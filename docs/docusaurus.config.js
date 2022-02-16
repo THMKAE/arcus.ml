@@ -1,5 +1,6 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path');
 
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
@@ -18,12 +19,12 @@ module.exports = {
       logo: {
         alt: 'Arcus',
         src: 'img/arcus.png',
-        srcDark: 'img/arcus.png'
+        srcDark: 'img/arcus.png',
       },
       items: [
         {
           type: 'docsVersionDropdown',
-        
+
           //// Optional
           position: 'right',
           // Add additional dropdown items at the beginning/end of the dropdown.
@@ -70,17 +71,25 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          routeBasePath: "/",
+          routeBasePath: '/',
           path: 'preview',
           sidebarCollapsible: false,
           // Please change this to your repo.
-          editUrl:
-            'https://github.com/arcus-azure/arcus.ml/edit/master/docs',
+          editUrl: 'https://github.com/arcus-azure/arcus.ml/edit/master/docs',
           // includeCurrentVersion:process.env.CONTEXT !== 'production',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      path.resolve(__dirname, './plugins/index.js'),
+      {
+        rootJupyterNotebooksFolder: '/samples',
+        docsOutputFolder: '/samples',
       },
     ],
   ],
